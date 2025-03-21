@@ -1,4 +1,7 @@
-import Image from "next/image";
+import Image from "next/image"
+import RotatingText from "@/components/RotatingText/RotatingText"
+import ShinyText from "@/components/ShinyText/ShinyText"
+import PixelTransition from "@/components/PixelTransition/PixelTransition"
 
 export default function Home() {
   return (
@@ -11,6 +14,46 @@ export default function Home() {
           width={180}
           height={38}
           priority
+        />
+        <ShinyText text="Just some shiny text!" disabled={false} speed={3} className='custom-class' />
+        <RotatingText
+          texts={['React', 'Bits', 'Is', 'Cool!']}
+          mainClassName="px-2 sm:px-2 md:px-3 bg-cyan-300 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+          staggerFrom={"last"}
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "-120%" }}
+          staggerDuration={0.025}
+          splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+          transition={{ type: "spring", damping: 30, stiffness: 400 }}
+          rotationInterval={2000}
+        />
+        <PixelTransition
+          firstContent={
+            <Image
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+              alt="default pixel transition content, a cat!"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              fill
+            />
+          }
+          secondContent={
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "grid",
+                placeItems: "center",
+                backgroundColor: "#111"
+              }}
+            >
+              <p style={{ fontWeight: 900, fontSize: "3rem", color: "#ffffff" }}>Meow!</p>
+            </div>
+          }
+          gridSize={12}
+          pixelColor='#ffffff'
+          animationStepDuration={0.4}
+          className="custom-pixel-card"
         />
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2 tracking-[-.01em]">
@@ -99,5 +142,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  );
+  )
 }
